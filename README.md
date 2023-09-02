@@ -2,6 +2,9 @@
 
 Official repository of "MMBench: Is Your Multi-modal Model an All-around Player?"
 
+**Download**: You can download the dataset following the instructions [here](https://opencompass.org.cn/mmbench)
+**Code**: You can refer to these example codes [here](https://github.com/open-compass/opencompass) to evaluate your model on MMBench.
+
 ## About MMBench
 
 In recent years, the field has seen a surge in the development of numerous vision-language (VL) models, such as MiniGPT-4 and LLaVA. These models showcase promising performance in tackling previously challenging tasks. However, effectively evaluating these models' performance has become a primary challenge hindering further advancement in large VL models. Traditional benchmarks like VQAv2 and COCO Caption are widely used to provide quantitative evaluations for VL models but suffer from several shortcomings:
