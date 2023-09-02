@@ -3,6 +3,7 @@
 Official repository of "MMBench: Is Your Multi-modal Model an All-around Player?"
 
 **Download**: You can download the dataset following the instructions [here](https://opencompass.org.cn/mmbench)
+
 **Code**: You can refer to these example codes [here](https://github.com/open-compass/opencompass) to evaluate your model on MMBench.
 
 ## About MMBench
