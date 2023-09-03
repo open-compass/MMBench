@@ -1,10 +1,15 @@
 # MMBench
 
-Official repository of "MMBench: Is Your Multi-modal Model an All-around Player?"
+[![evaluation](https://img.shields.io/badge/OpenCompass-Support-royalblue.svg)](https://github.com/internLM/OpenCompass/)
 
-**Download**: You can download the dataset following the instructions [here](https://opencompass.org.cn/mmbench)
+Official repository of "**MMBench: Is Your Multi-modal Model an All-around Player?**"
 
-**Code**: You can refer to these example codes [here](https://github.com/open-compass/opencompass) to evaluate your model on MMBench.
+> **🔥 Attention**<br />
+> MMBench is developed by the [OpenCompass Community](https://github.com/open-compass/opencompass), welcome to follow the OpenCompass for more latest evaluation techniques of large model. 
+
+**Download**:  MMBench is splitted into dev and test set, according to a 4:6 ratio. You can download the [[**dev**]](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_20230712.tsv) set here and the [[**test**]](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_test_20230712.tsv) set here.
+
+**Code**: You can refer to these example [code](https://github.com/open-compass/opencompass/blob/main/configs/multimodal/minigpt_4/README.md) to evaluate your model on MMBench.
 
 ## About MMBench
 
@@ -20,7 +25,7 @@ To address these limitations, we propose a novel approach by defining a set of f
 
 **Evaluation**: For a more reliable evaluation, we employ ChatGPT to match a model's prediction with the choices of a question, and then output the corresponding label (A, B, C, D) as the final prediction.
 
-## MMBench Dataset
+## Dataset
 
 MMBench is collected from multiple sources, including public datasets and Internet, and currently, contains 2974 multiple-choice questions, covering 20 ability dimensions. We structure the existing 20 ability dimensions into 3 ability dimension levels, from L-1 to L-3. we incorporate Perception and Reasoning as our top-level ability dimensions in our ability taxonomy, referred to as L-1 ability dimension. For L-2 abilities, we derive: 1. Coarse Perception, 2. Fine-grained Single-instance Perception, 3. Fine-grained Cross-instance Perception from L-1 Perception; and 1. Attribute Reasoning, 2. Relation Reasoning, 3. Logic Reasoning from L-1 Reasoning. To make our benchmark as fine-grained as possible to produce informative feedbacks for developing multi-modality models. We further derive L-3 ability dimensions from L-2 ones. To the best of our knowledge, MMBench is the first large-scale evaluation multimodal dataset covering so many ability dimensions.
 
@@ -33,7 +38,7 @@ Compared to previous datasets, MMBench has the following advantages:
  <img src="https://opencompass.oss-cn-shanghai.aliyuncs.com/omnimmbench/img/taxonomy.jpg" width = "500" height = "500" align=center />
 
 
-## MMBench Evaluation
+## Evaluation
 
 In MMBench, we present a new evaluation protocol to yield robust evaluation results at an affordable cost. We use the Circular Evaluation strategy to test if a vision-language model can successfully solve each single problem. The strategy yields much more reliable results than the vanilla evaluation strategy. To deal with the free-form text output of VLMs, we propose to use LLM-based choice extractors to convert the free-form text into a specific choice (A, B, C, etc.).
 
@@ -44,3 +49,147 @@ In MMBench, we present a new evaluation protocol to yield robust evaluation resu
 **LLM-based Choice Extractors**. As the instruction-following capabilities of VLMs differ a lot, we frequently need to handle the free-form text output from VLMs during evaluation. It's difficult for traditional rule-based matching to extract the choices from the free-form text, thus we resort to LLMs. Given the output of an VLM, we first try rule-based matching to match the output with the choices to save inference cost. Once failed, we try to extract the choice with ChatGPT. We provide ChatGPT with the question, options, model predicitons formated using the prompt template below. Once we obtain the ChatGPT output, we try to use exact matching (previous step) to extract the choice from the GPT output. We attempt up to 3 times to extract the choice. The ChatGPT-based choice extractor exhibits a perfect success rate (> 99.9%) and reasonably good alignment with human experts.
 
 <img src="https://opencompass.oss-cn-shanghai.aliyuncs.com/omnimmbench/img/gpt_prompt.png" width = "500" height = "200" align=center />
+
+## How To Use?
+
+### Intro to each data sample in MMBench
+
+MMBecnh is split into **dev** and **test** split, and each data sample in each split contains the following field:
+
+```
+img: the raw data of an image
+question: the question
+options: the concated options
+category: the leaf category
+l2-category: the l2-level category
+options_dict: the dict contains all options
+index: the unique identifier of current question
+context (optional): the context to a question, which is optional.
+answer: the target answer to current question. (only exists in the dev split, and is keep confidential for the test split on our evaluation server)
+```
+
+### Load MMBench
+
+We provide a code snippet as an example of loading MMBench
+
+```python
+import base64
+import io
+import random
+
+import pandas as pd
+from PIL import Image
+from torch.utils.data import Dataset
+
+def decode_base64_to_image(base64_string):
+    image_data = base64.b64decode(base64_string)
+    image = Image.open(io.BytesIO(image_data))
+    return image
+
+class MMBenchDataset(Dataset):
+    def __init__(self,
+                 data_file,
+                 sys_prompt='There are several options:'):
+        self.df = pd.read_csv(data_file, sep='\t')
+        self.sys_prompt = sys_prompt
+
+    def __len__(self):
+        return len(self.df)
+
+    def __getitem__(self, idx):
+        index = self.df.iloc[idx]['index']
+        image = self.df.iloc[idx]['image']
+        image = decode_base64_to_image(image)
+        question = self.df.iloc[idx]['question']
+        answer = self.df.iloc[idx]['answer'] if 'answer' in self.df.iloc[0].keys() else None
+        catetory = self.df.iloc[idx]['category']
+        l2_catetory = self.df.iloc[idx]['l2-category']
+
+        option_candidate = ['A', 'B', 'C', 'D', 'E']
+        options = {
+            cand: self.load_from_df(idx, cand)
+            for cand in option_candidate
+            if self.load_from_df(idx, cand) is not None
+        }
+        options_prompt = f'{self.sys_prompt}\n'
+        for key, item in options.items():
+            options_prompt += f'{key}. {item}\n'
+
+        hint = self.load_from_df(idx, 'hint')
+        data = {
+            'img': image,
+            'question': question,
+            'answer': answer,
+            'options': options_prompt,
+            'category': catetory,
+            'l2-category': l2_catetory,
+            'options_dict': options,
+            'index': index,
+            'context': hint,
+        }
+        return data
+   def load_from_df(self, idx, key):
+        if key in self.df.iloc[idx] and not pd.isna(self.df.iloc[idx][key]):
+            return self.df.iloc[idx][key]
+        else:
+            return None
+```
+
+### How to construct the inference prompt
+
+```python
+if data_sample['context'] is not None:
+    prompt = data_sample['context'] + ' ' + data_sample['question'] + ' ' + data_sample['options']
+else:
+    prompt = data_sample['question'] + ' ' + data_sample['options']
+```
+
+For example:
+Question: Which category does this image belong to?
+A. Oil Painting
+B. Sketch
+C. Digital art
+D. Photo
+
+<div align=center>
+<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/34324155/255581681-1364ef43-bd27-4eb5-b9e5-241327b1f920.png" width="50%"/>
+</div>
+
+```python
+prompt = """
+###Human: Question: Which category does this image belong to?
+There are several options: A. Oil Painting, B. Sketch, C. Digital art, D. Photo
+###Assistant:
+"""
+```
+
+You can make custom modifications to the prompt
+
+### How to save results:
+
+You should dump your model's predictions into an excel(.xlsx) file, and this file should contain the following fields:
+
+```
+question: the question
+A: The first choice
+B: The second choice
+C: The third choice
+D: The fourth choice
+prediction: The prediction of your model to current question
+category: the leaf category
+l2_category: the l2-level category
+index: the question index
+```
+
+If there are any questions with fewer than four options, simply leave those fields blank.
+
+## Citation
+
+```bibtex
+@article{MMBench,
+    author  = {Yuan Liu, Haodong Duan, Yuanhan Zhang, Bo Li, Songyang Zhnag, Wangbo Zhao, Yike Yuan, Jiaqi Wang, Conghui He, Ziwei Liu, Kai Chen, Dahua Lin},
+    journal = {arXiv:2307.06281},
+    title   = {MMBench: Is Your Multi-modal Model an All-around Player?},
+    year    = {2023},
+}
+```
