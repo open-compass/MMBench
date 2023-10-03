@@ -157,7 +157,7 @@ For example:
 
 | Question                                  | Options                                                      | Image                                                        |
 | ----------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Which category does this image belong to? | A. Oil Painting<br/>B. Sketch<br/>C. Digital art<br/>D. Photo | <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/34324155/255581681-1364ef43-bd27-4eb5-b9e5-241327b1f920.png" width="30%"> |
+| Which category does this image belong to? | A. Oil Painting<br/>B. Sketch<br/>C. Digital art<br/>D. Photo | <div align="center"><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/34324155/255581681-1364ef43-bd27-4eb5-b9e5-241327b1f920.png" width="30%"></div> |
 
 
 ```python
