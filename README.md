@@ -7,9 +7,15 @@ Official repository of "**MMBench: Is Your Multi-modal Model an All-around Playe
 > **🔥 Attention**<br />
 > MMBench is developed by the [OpenCompass Community](https://github.com/open-compass/opencompass), welcome to follow the OpenCompass for more latest evaluation techniques of large model. 
 
-**Download**:  MMBench is splitted into dev and test set, according to a 4:6 ratio. You can download the [[**dev**]](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_20230712.tsv) set here and the [[**test**]](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_test_20230712.tsv) set here.
+**Download**:  MMBench is splitted into dev and test set, according to a 4:6 ratio. You can download the [**DEV (en)**](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_en_20231003.tsv) set here and the [**TEST (en)**](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_test_en_20231003.tsv) set here. We also provide a verified Chinese-translated version of MMBench ([**DEV (cn)**](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_cn_20231003.tsv) / [**TEST (cn)**](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_test_cn_20231003.tsv)), the users can utilize it to verify the Chinese capability of their VLMs.
 
-**Code**: You can refer to these example [code](https://github.com/open-compass/opencompass/blob/main/configs/multimodal/minigpt_4/README.md) to evaluate your model on MMBench.
+**Code**: You can refer to these example [**Code**](https://github.com/open-compass/opencompass/blob/main/configs/multimodal/minigpt_4/README.md) to evaluate your model on MMBench.
+
+## **News**
+
+1. [2023/10/03] We provide a verified Chinese-translated version of MMBench ([**DEV (cn)**](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_cn_20231003.tsv) / [**TEST (cn)**](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_test_cn_20231003.tsv)). Users can utilize it to verify the Chinese capability of their VLMs.
+
+2. [2023/10/03] We provide a new revised version of **MMBench**, in which we removed around 20+ questions which are noisy or of low quality. The updated version is available here: [**DEV**](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_en_20231003.tsv) / [**TEST**](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_test_en_20231003.tsv). This is a minor change and we find that the evaluation results are basically the same for both versions. Thus you are not required to re-test your model on the new MMBench. 
 
 ## About MMBench
 
@@ -35,7 +41,7 @@ Compared to previous datasets, MMBench has the following advantages:
 
 **Compared to previous subjective datasets**. MMBench is a objective dataset, and the evaluation results are less biased. Moreover, the results on MMBench are guranteed to be reproducible, which is not the case for subjective datasets.
 
-![Capability_Dist](https://opencompass.oss-cn-shanghai.aliyuncs.com/omnimmbench/img/taxonomy.jpg)
+![Capability_Dist](https://opencompass.oss-cn-shanghai.aliyuncs.com/omnimmbench/img/taxonomy2.png)
 
 
 ## Evaluation
@@ -146,15 +152,11 @@ else:
 ```
 
 For example:
-Question: Which category does this image belong to?
-A. Oil Painting
-B. Sketch
-C. Digital art
-D. Photo
 
-<div align=center>
-<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/34324155/255581681-1364ef43-bd27-4eb5-b9e5-241327b1f920.png" width="50%"/>
-</div>
+| Question                                  | Options                                                      | Image                                                        |
+| ----------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Which category does this image belong to? | A. Oil Painting<br/>B. Sketch<br/>C. Digital art<br/>D. Photo | <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/34324155/255581681-1364ef43-bd27-4eb5-b9e5-241327b1f920.png" width="30%"> |
+
 
 ```python
 prompt = """
