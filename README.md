@@ -35,7 +35,7 @@ Compared to previous datasets, MMBench has the following advantages:
 
 **Compared to previous subjective datasets**. MMBench is a objective dataset, and the evaluation results are less biased. Moreover, the results on MMBench are guranteed to be reproducible, which is not the case for subjective datasets.
 
- <img src="https://opencompass.oss-cn-shanghai.aliyuncs.com/omnimmbench/img/taxonomy.jpg" width = "500" height = "500" align=center />
+![Capability_Dist](https://opencompass.oss-cn-shanghai.aliyuncs.com/omnimmbench/img/taxonomy.jpg)
 
 
 ## Evaluation
@@ -44,11 +44,11 @@ In MMBench, we present a new evaluation protocol to yield robust evaluation resu
 
 **The Circular Evaluation Strategy**. To present more robust evaluation results and alleviate the negative impact of noises. We present a new evaluation protocol, called Circular Evaluation, to test if a vision-language model can consistently succeed in solving each single problem. Specifically, for a single-choice problem with N choices, we inference the problem N passes with an VLM. In each pass, we apply circular shifting to the choices and the corresponding answer to generate a new prompt for VLM inference (An example depicted in the below figure). In Circular Evaluation, only if the VLM succeed in all N passes, we say that the VLM succeed in solving this problem. The Circular Evaluation setting is much more challenging than the traditional 1-pass evaluation. For most existing VLMs, it's common to see a 10% ~ 20% drop in Top-1 accuracy with the Circular Evaluation strategy applied.
 
-<img src="https://opencompass.oss-cn-shanghai.aliyuncs.com/omnimmbench/img/circular_eval.jpg" width = "500" height = "100" align=center />
+![Circular](https://opencompass.oss-cn-shanghai.aliyuncs.com/omnimmbench/img/circular_eval.jpg)
 
 **LLM-based Choice Extractors**. As the instruction-following capabilities of VLMs differ a lot, we frequently need to handle the free-form text output from VLMs during evaluation. It's difficult for traditional rule-based matching to extract the choices from the free-form text, thus we resort to LLMs. Given the output of an VLM, we first try rule-based matching to match the output with the choices to save inference cost. Once failed, we try to extract the choice with ChatGPT. We provide ChatGPT with the question, options, model predicitons formated using the prompt template below. Once we obtain the ChatGPT output, we try to use exact matching (previous step) to extract the choice from the GPT output. We attempt up to 3 times to extract the choice. The ChatGPT-based choice extractor exhibits a perfect success rate (> 99.9%) and reasonably good alignment with human experts.
 
-<img src="https://opencompass.oss-cn-shanghai.aliyuncs.com/omnimmbench/img/gpt_prompt.png" width = "500" height = "200" align=center />
+![GPT_Prompt](https://opencompass.oss-cn-shanghai.aliyuncs.com/omnimmbench/img/gpt_prompt.png)
 
 ## How To Use?
 
@@ -128,7 +128,8 @@ class MMBenchDataset(Dataset):
             'context': hint,
         }
         return data
-   def load_from_df(self, idx, key):
+    
+    def load_from_df(self, idx, key):
         if key in self.df.iloc[idx] and not pd.isna(self.df.iloc[idx][key]):
             return self.df.iloc[idx][key]
         else:
