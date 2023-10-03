@@ -13,7 +13,9 @@ Official repository of "**MMBench: Is Your Multi-modal Model an All-around Playe
 
 ## **News**
 
-1. [2023/10/03] We provide a verified Chinese-translated version of MMBench ([**DEV (cn)**](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_cn_20231003.tsv) / [**TEST (cn)**](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_test_cn_20231003.tsv)). Users can utilize it to verify the Chinese capability of their VLMs.
+1. [2023/10/03] We provide a verified Chinese-translated version of MMBench ([**DEV (cn)**](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_cn_20231003.tsv) / [**TEST (cn)**](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_test_cn_20231003.tsv)). Users can utilize it to verify the Chinese capability of their VLMs. We provide an illustration in the figure below. 
+
+![ML](https://opencompass.oss-cn-shanghai.aliyuncs.com/omnimmbench/img/multi_lingual.png)
 
 2. [2023/10/03] We provide a new revised version of **MMBench**, in which we removed around 20+ questions which are noisy or of low quality. The updated version is available here: [**DEV**](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_en_20231003.tsv) / [**TEST**](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_test_en_20231003.tsv). This is a minor change and we find that the evaluation results are basically the same for both versions. Thus you are not required to re-test your model on the new MMBench. 
 
