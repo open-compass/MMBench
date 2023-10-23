@@ -1,5 +1,87 @@
 # Visualizaiton of Data Samples
 
+## CCBench 
+
+<table class="center">
+	<tr>
+		<th style="text-align:center;", colspan=1><b>风景与建筑 (Scenery Building)</b></th>
+	</tr>
+	<tr>
+		<td colspan=2><img src="CCBench/0.jpg" width="100%"></td>
+		<td colspan=2><img src="CCBench/1.jpg" width="100%"></td>
+	</tr>
+	<tr>
+		<td colspan=2><p>QUESTION. 图中所示建筑名称为？<br><br>Options:<br>A. 天坛<br>B. 故宫<br>C. 黄鹤楼<br>D. 少林寺<br><br>ANSWER. A<br></p></td>
+		<td colspan=2><p>QUESTION. 图中所示建筑名称为？<br><br>Options:<br>A. 东方明珠<br>B. 长城<br>C. 中山陵<br>D. 少林寺<br><br>ANSWER. B<br></p></td>
+	</tr>
+	<tr>
+		<th style="text-align:center;", colspan=1><b>文物 (Cultural Relic)</b></th>
+	</tr>
+	<tr>
+		<td colspan=2><img src="CCBench/100.jpg" width="100%"></td>
+		<td colspan=2><img src="CCBench/101.jpg" width="100%"></td>
+	</tr>
+	<tr>
+		<td colspan=2><p>QUESTION. 图中的文物出土于哪里？<br><br>Options:<br>A. 海昏侯墓<br>B. 三星堆<br>C. 半坡遗址<br>D. 秦始皇陵<br><br>ANSWER. B<br></p></td>
+		<td colspan=2><p>QUESTION. 图中的文物名称是什么？<br><br>Options:<br>A. 大晟编钟<br>B. 汉代青铜编钟<br>C. 海昏侯墓铜鎏金编钟<br>D. 曾侯乙编钟<br><br>ANSWER. D<br></p></td>
+	</tr>
+	<tr>
+		<th style="text-align:center;", colspan=1><b>传统戏剧 (Traditional Show)</b></th>
+	</tr>
+	<tr>
+		<td colspan=2><img src="CCBench/199.jpg" width="100%"></td>
+		<td colspan=2><img src="CCBench/201.jpg" width="100%"></td>
+	</tr>
+	<tr>
+		<td colspan=2><p>QUESTION. 图中所示剧种为?<br><br>Options:<br>A. 黄梅戏<br>B. 越剧<br>C. 京剧<br>D. 昆曲<br><br>ANSWER. C<br></p></td>
+		<td colspan=2><p>QUESTION. 图中所示的传统表演形式为?<br><br>Options:<br>A. 皮影戏<br>B. 木偶戏<br>C. 黄梅戏<br>D. 评剧<br><br>ANSWER. B<br></p></td>
+	</tr>
+	<tr>
+		<th style="text-align:center;", colspan=1><b>书画 (Calligraphy Painting)</b></th>
+	</tr>
+	<tr>
+		<td colspan=2><img src="CCBench/265.jpg" width="100%"></td>
+		<td colspan=2><img src="CCBench/272.jpg" width="100%"></td>
+	</tr>
+	<tr>
+		<td colspan=2><p>QUESTION. 左图是谁的作品?<br><br>Options:<br>A. 徐悲鸿<br>B. 齐白石<br>C. 张大千<br>D. 刘海粟<br><br>ANSWER. A<br></p></td>
+		<td colspan=2><p>QUESTION. 左图是谁的作品?<br><br>Options:<br>A. 徐悲鸿<br>B. 齐白石<br>C. 张大千<br>D. 刘海粟<br><br>ANSWER. B<br></p></td>
+	</tr>
+	<tr>
+		<th style="text-align:center;", colspan=1><b>历史人物 (Historical Figure)</b></th>
+	</tr>
+	<tr>
+		<td colspan=2><img src="CCBench/330.jpg" width="100%"></td>
+		<td colspan=2><img src="CCBench/323.jpg" width="100%"></td>
+	</tr>
+	<tr>
+		<td colspan=2><p>QUESTION. 以下对这位历史人物的描述中哪一项是错误的。<br><br>Options:<br>A.他是三国时期的著名政治家、军事家和文学家，被称为“魏武帝”<br>B.他是中国历史上著名的文学巨匠，作品包括《短歌行》和《观沧海》等<br>C.他在统一北方后，建立了曹魏政权，成为政权的奠基人和领袖<br>D.他在赤壁之战中被孙权击败，最终在白马坡病故<br><br>ANSWER. C<br></p></td>
+		<td colspan=2><p>QUESTION. 以下对这位历史人物的描述中哪一项是错误的。<br><br>Options:<br>A.他是三国时期蜀汉的重要政治家和军事家，他参与了许多著名的战役<br>B.他是中国历史上著名的文化名人，他在诗词、文学方面都有出色的成就<br>C.他是著名的谋士和智者，他被称为“卧龙先生”<br>D.他是中国古代著名的科学家，他在数学和物理学等方面做出了杰出的贡献<br><br>ANSWER. D<br></p></td>
+	</tr>
+	<tr>
+		<th style="text-align:center;", colspan=1><b>图像推理 (Sketch Reasoning)</b></th>
+	</tr>
+	<tr>
+		<td colspan=2><img src="CCBench/383.jpg" width="100%"></td>
+		<td colspan=2><img src="CCBench/396.jpg" width="100%"></td>
+	</tr>
+	<tr>
+		<td colspan=2><p>QUESTION. 这是一道看图猜成语题目，请问图中画面对应的是哪个成语？<br><br>Options:<br>A. 一清二白<br>B. 一叶障目<br>C. 一石二鸟<br>D. 叶公好龙<br><br>ANSWER. B<br></p></td>
+		<td colspan=2><p>QUESTION. 这是一道看图猜古诗的题目，请问图中画面对应的是首古诗<br><br>Options:<br>A. 《悯农（其二）》<br>B. 《咏鹅》<br>C. 《小池》<br>D. 《春晓》<br><br>ANSWER. B<br></p></td>
+	</tr>
+	<tr>
+		<th style="text-align:center;", colspan=1><b>食物与服饰 (Food Clothes)</b></th>
+	</tr>
+	<tr>
+		<td colspan=2><img src="CCBench/425.jpg" width="100%"></td>
+		<td colspan=2><img src="CCBench/426.jpg" width="100%"></td>
+	</tr>
+	<tr>
+		<td colspan=2><p>QUESTION. 这是哪里的美食？<br><br>Options:<br>A. 北京<br>B. 上海<br>C. 广州<br>D. 深圳<br><br>ANSWER. A<br></p></td>
+		<td colspan=2><p>QUESTION. 图上是什么美食？<br><br>Options:<br>A. 雪糕<br>B. 冰糖葫芦<br>C. 荷兰豆<br>D. 圣女果<br><br>ANSWER. B<br></p></td>
+	</tr>
+</table>
+
 ## MMBench (EN / CN)
 
 <table class="center">
