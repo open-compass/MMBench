@@ -2,22 +2,34 @@
 
 [![evaluation](https://img.shields.io/badge/OpenCompass-Support-royalblue.svg)](https://github.com/internLM/OpenCompass/)
 
-Official repository of "**MMBench: Is Your Multi-modal Model an All-around Player?**"
+Official repository of ["**MMBench: Is Your Multi-modal Model an All-around Player?**"](https://arxiv.org/abs/2307.06281)
 
-> **🔥 Attention**<br />
+> **🔥 Attention**<br>
 > MMBench is developed by the [OpenCompass Community](https://github.com/open-compass/opencompass), welcome to follow the OpenCompass for more latest evaluation techniques of large model. 
 
-**Download**:  MMBench is splitted into dev and test set, according to a 4:6 ratio. You can download the [**DEV (en)**](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_en_20231003.tsv) set here and the [**TEST (en)**](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_test_en_20231003.tsv) set here. We also provide a verified Chinese-translated version of MMBench ([**DEV (cn)**](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_cn_20231003.tsv) / [**TEST (cn)**](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_test_cn_20231003.tsv)), the users can utilize it to verify the Chinese capability of their VLMs.
+**Download**:  MMBench is a collection of benchmarks to evaluate the multi-modal understanding capability of large vision language models (LVLMs). The table below list the information of all benchmarks included in MMBench as well as their download links. 
 
-**Code**: You can refer to these example [**Code**](https://github.com/open-compass/opencompass/blob/main/configs/multimodal/minigpt_4/README.md) to evaluate your model on MMBench.
+| Name              | Split | Language | # Questions | Comment                                      | Download Link                                                |
+| ----------------- | ----- | -------- | ----------- | -------------------------------------------- | ------------------------------------------------------------ |
+| MMBench-Dev       | Dev   | EN       | 1164        | The Dev Split of MMBench                     | **[Download](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_en_20231003.tsv)** |
+| MMBench-Test      | Test  | EN       | 1784        | The Test Split of MMBench                    | **[Download](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_test_en_20231003.tsv)** |
+| MMBench-Dev (cn)  | Dev   | CN       | 1164        | Chinese Version of MMBench-Dev               | **[Download](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_cn_20231003.tsv)** |
+| MMBench-Test (cn) | Test  | CN       | 1784        | Chinese Version of MMBench-Test              | **[Download](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_test_cn_20231003.tsv)** |
+| CCBench           | Dev   | CN       | 544         | A Benchmark on Chinese Culture Related Stuff | **[Download](https://download.openmmlab.com/mmclassification/datasets/mmbench/ccbench_20231003.tsv)**                                                     |
+
+**Visualization**: You can visualize data samples of benchmarks in MMBench in [Visualization](/samples/README.md). 
+
+**Code**: You can refer to the [example code](https://github.com/open-compass/opencompass/blob/main/configs/multimodal/minigpt_4/README.md) to evaluate your model on MMBench.
 
 ## **News**
 
-1. [2023/10/03] We provide a verified Chinese-translated version of MMBench ([**DEV (cn)**](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_cn_20231003.tsv) / [**TEST (cn)**](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_test_cn_20231003.tsv)). Users can utilize it to verify the Chinese capability of their VLMs. We provide an illustration in the figure below. 
+1. [2023/10/23] We provide a new benchmark named **CCBench**, which is a multi-modal benchmark in the domain of Chinese Culture.
 
-![ML](https://opencompass.oss-cn-shanghai.aliyuncs.com/omnimmbench/img/multi_lingual.png)
+2. [2023/10/03] We provide a verified **Chinese**-translated version of MMBench. Users can utilize it to verify the Chinese capability of their VLMs. We provide an illustration in the figure below. 
 
-2. [2023/10/03] We provide a new revised version of **MMBench**, in which we removed around 20+ questions which are noisy or of low quality. The updated version is available here: [**DEV**](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_en_20231003.tsv) / [**TEST**](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_test_en_20231003.tsv). This is a minor change and we find that the evaluation results are basically the same for both versions. Thus you are not required to re-test your model on the new MMBench. 
+<div align="center">
+<img src="https://opencompass.oss-cn-shanghai.aliyuncs.com/omnimmbench/img/multi_lingual.png" width="60%">
+</div>
 
 ## About MMBench
 
@@ -43,7 +55,9 @@ Compared to previous datasets, MMBench has the following advantages:
 
 **Compared to previous subjective datasets**. MMBench is a objective dataset, and the evaluation results are less biased. Moreover, the results on MMBench are guranteed to be reproducible, which is not the case for subjective datasets.
 
-![Capability_Dist](https://opencompass.oss-cn-shanghai.aliyuncs.com/omnimmbench/img/taxonomy2.png)
+<div align="center">
+<img src="https://opencompass.oss-cn-shanghai.aliyuncs.com/omnimmbench/img/taxonomy2.png" width="50%">
+</div>
 
 
 ## Evaluation
@@ -52,11 +66,15 @@ In MMBench, we present a new evaluation protocol to yield robust evaluation resu
 
 **The Circular Evaluation Strategy**. To present more robust evaluation results and alleviate the negative impact of noises. We present a new evaluation protocol, called Circular Evaluation, to test if a vision-language model can consistently succeed in solving each single problem. Specifically, for a single-choice problem with N choices, we inference the problem N passes with an VLM. In each pass, we apply circular shifting to the choices and the corresponding answer to generate a new prompt for VLM inference (An example depicted in the below figure). In Circular Evaluation, only if the VLM succeed in all N passes, we say that the VLM succeed in solving this problem. The Circular Evaluation setting is much more challenging than the traditional 1-pass evaluation. For most existing VLMs, it's common to see a 10% ~ 20% drop in Top-1 accuracy with the Circular Evaluation strategy applied.
 
-![Circular](https://opencompass.oss-cn-shanghai.aliyuncs.com/omnimmbench/img/circular_eval.jpg)
+<div align="center">
+<img src="https://opencompass.oss-cn-shanghai.aliyuncs.com/omnimmbench/img/circular_eval.jpg" width="100%">
+</div>
 
 **LLM-based Choice Extractors**. As the instruction-following capabilities of VLMs differ a lot, we frequently need to handle the free-form text output from VLMs during evaluation. It's difficult for traditional rule-based matching to extract the choices from the free-form text, thus we resort to LLMs. Given the output of an VLM, we first try rule-based matching to match the output with the choices to save inference cost. Once failed, we try to extract the choice with ChatGPT. We provide ChatGPT with the question, options, model predicitons formated using the prompt template below. Once we obtain the ChatGPT output, we try to use exact matching (previous step) to extract the choice from the GPT output. We attempt up to 3 times to extract the choice. The ChatGPT-based choice extractor exhibits a perfect success rate (> 99.9%) and reasonably good alignment with human experts.
 
-![GPT_Prompt](https://opencompass.oss-cn-shanghai.aliyuncs.com/omnimmbench/img/gpt_prompt.png)
+<div align="center">
+<img src="https://opencompass.oss-cn-shanghai.aliyuncs.com/omnimmbench/img/gpt_prompt.png" width="70%">
+</div>
 
 ## How To Use?
 
