@@ -4,8 +4,8 @@
 		<th style="text-align:center;", colspan=2, width="50%"><b>Finegrained Perception (cross-instance):<br>Action Recognition</b></th>
 	</tr>
 	<tr>
-		<td colspan=2><div style="text-align:center"><img src="MMBench/1.jpg" width="75%"></div></td>
-		<td colspan=2><div style="text-align:center"><img src="MMBench/21.jpg" width="75%"></div></td>
+		<td colspan=2><img src="MMBench/1.jpg" width="100%"></td>
+		<td colspan=2><img src="MMBench/21.jpg" width="100%"></td>
 	</tr>
 	<tr>
 		<td colspan=2><p>QUESTION. What is correct Python code to generate the content of the image?<br><br>Options:<br>A. for x in range(6):<br>     print(x)<br>   else:<br>     print("Finally finished!")<br>   <br>B. thisdict = {<br>     "brand": "Ford",<br>     "model": "Mustang",<br>     "year": 1964<br>   }<br>   <br>   print(len(thisdict))<br>C. x = 1<br>   y = 2.8<br>   z = 1j<br>   <br>   print(type(x))<br>   print(type(y))<br>   print(type(z))<br>   <br>D. fruits = ["apple", "banana", "cherry"]<br>   for x in fruits:<br>     print(x)<br><br>ANSWER. D<br></p></td>
@@ -16,8 +16,8 @@
 		<th style="text-align:center;", colspan=2, width="50%"><b>Finegrained Perception (instance-level):<br>Object Localization</b></th>
 	</tr>
 	<tr>
-		<td colspan=2><div style="text-align:center"><img src="MMBench/812.jpg" width="75%"></div></td>
-		<td colspan=2><div style="text-align:center"><img src="MMBench/672.jpg" width="75%"></div></td>
+		<td colspan=2><img src="MMBench/812.jpg" width="100%"></td>
+		<td colspan=2><img src="MMBench/672.jpg" width="100%"></td>
 	</tr>
 	<tr>
 		<td colspan=2><p>QUESTION. Which scene category matches this image the best?<br><br>Options:<br>A. rock_arch<br>B. train_interior<br>C. shopfront<br>D. office_cubicles<br><br>ANSWER. A<br></p></td>
@@ -28,8 +28,8 @@
 		<th style="text-align:center;", colspan=2, width="50%"><b>Attribute Reasoning:<br>Function Reasoning</b></th>
 	</tr>
 	<tr>
-		<td colspan=2><div style="text-align:center"><img src="MMBench/2789.jpg" width="75%"></div></td>
-		<td colspan=2><div style="text-align:center"><img src="MMBench/2705.jpg" width="75%"></div></td>
+		<td colspan=2><img src="MMBench/2789.jpg" width="100%"></td>
+		<td colspan=2><img src="MMBench/2705.jpg" width="100%"></td>
 	</tr>
 	<tr>
 		<td colspan=2><p>QUESTION. Which of the following captions best describes this image?<br><br>Options:<br>A. A giraffe eating tree leaves in the desert<br>B. A chimpanzee being petted on the head<br>C. A horse drinking water by the shore<br>D. A black puppy and a baby in the snow<br><br>ANSWER. C<br></p></td>
@@ -40,8 +40,8 @@
 		<th style="text-align:center;", colspan=2, width="50%"><b>Attribute Reasoning:<br>Identity Reasoning</b></th>
 	</tr>
 	<tr>
-		<td colspan=2><div style="text-align:center"><img src="MMBench/2222.jpg" width="75%"></div></td>
-		<td colspan=2><div style="text-align:center"><img src="MMBench/2368.jpg" width="75%"></div></td>
+		<td colspan=2><img src="MMBench/2222.jpg" width="100%"></td>
+		<td colspan=2><img src="MMBench/2368.jpg" width="100%"></td>
 	</tr>
 	<tr>
 		<td colspan=2><p>QUESTION. Based on this image, please predict what will happen next?<br><br>Options:<br>A. This egg will become cooked<br>B. This egg will fall down<br>C. The egg will be broken<br><br>ANSWER. C<br></p></td>
@@ -52,8 +52,8 @@
 		<th style="text-align:center;", colspan=2, width="50%"><b>Relation Reasoning:<br>Social Relation</b></th>
 	</tr>
 	<tr>
-		<td colspan=2><div style="text-align:center"><img src="MMBench/862.jpg" width="75%"></div></td>
-		<td colspan=2><div style="text-align:center"><img src="MMBench/1156.jpg" width="75%"></div></td>
+		<td colspan=2><img src="MMBench/862.jpg" width="100%"></td>
+		<td colspan=2><img src="MMBench/1156.jpg" width="100%"></td>
 	</tr>
 	<tr>
 		<td colspan=2><p>QUESTION. What properties do the metals in the image have?<br><br>Options:<br>A. Silver white color.<br>B. Good conductivity.<br>C. Aromatic liquid.<br>D. Good flowability.<br><br>ANSWER. B<br></p></td>
@@ -64,8 +64,8 @@
 		<th style="text-align:center;", colspan=2, width="50%"><b>Relation Reasoning:<br>Physical Relation</b></th>
 	</tr>
 	<tr>
-		<td colspan=2><div style="text-align:center"><img src="MMBench/2318.jpg" width="75%"></div></td>
-		<td colspan=2><div style="text-align:center"><img src="MMBench/2399.jpg" width="75%"></div></td>
+		<td colspan=2><img src="MMBench/2318.jpg" width="100%"></td>
+		<td colspan=2><img src="MMBench/2399.jpg" width="100%"></td>
 	</tr>
 	<tr>
 		<td colspan=2><p>QUESTION. What is the approximate shape of this umbrella?<br><br>Options:<br>A. Circle<br>B. Octagon<br>C. Triangle<br>D. Rectangle<br><br>ANSWER. B<br></p></td>
@@ -76,8 +76,8 @@
 		<th style="text-align:center;", colspan=2, width="50%"><b>Finegrained Perception (cross-instance):<br>Attribute Comparison</b></th>
 	</tr>
 	<tr>
-		<td colspan=2><div style="text-align:center"><img src="MMBench/2967.jpg" width="75%"></div></td>
-		<td colspan=2><div style="text-align:center"><img src="MMBench/318.jpg" width="75%"></div></td>
+		<td colspan=2><img src="MMBench/2967.jpg" width="100%"></td>
+		<td colspan=2><img src="MMBench/318.jpg" width="100%"></td>
 	</tr>
 	<tr>
 		<td colspan=2><p>QUESTION. In nature, what's the relationship between these two creatures?<br><br>Options:<br>A. Predatory relationships<br>B. Competitive relationships<br>C. Parasitic relationships<br>D. Mutualistic relationship<br><br>ANSWER. A<br></p></td>
@@ -88,8 +88,8 @@
 		<th style="text-align:center;", colspan=2, width="50%"><b>Finegrained Perception (instance-level):<br>OCR</b></th>
 	</tr>
 	<tr>
-		<td colspan=2><div style="text-align:center"><img src="MMBench/2870.jpg" width="75%"></div></td>
-		<td colspan=2><div style="text-align:center"><img src="MMBench/1745.jpg" width="75%"></div></td>
+		<td colspan=2><img src="MMBench/2870.jpg" width="100%"></td>
+		<td colspan=2><img src="MMBench/1745.jpg" width="100%"></td>
 	</tr>
 	<tr>
 		<td colspan=2><p>QUESTION. What direction is Yemen in Saudi Arabia?<br><br>Options:<br>A. east<br>B. west<br>C. north<br>D. south<br><br>ANSWER. D<br></p></td>
@@ -100,8 +100,8 @@
 		<th style="text-align:center;", colspan=2, width="50%"><b>Coarse Perception:<br>Image Style</b></th>
 	</tr>
 	<tr>
-		<td colspan=2><div style="text-align:center"><img src="MMBench/718.jpg" width="75%"></div></td>
-		<td colspan=2><div style="text-align:center"><img src="MMBench/503.jpg" width="75%"></div></td>
+		<td colspan=2><img src="MMBench/718.jpg" width="100%"></td>
+		<td colspan=2><img src="MMBench/503.jpg" width="100%"></td>
 	</tr>
 	<tr>
 		<td colspan=2><p>QUESTION. Who is the person in this image?<br><br>Options:<br>A. Jackie Chan<br>B. Jing Wu<br>C. Donald Trump<br>D. Steve Jobs<br><br>ANSWER. D<br></p></td>
@@ -112,8 +112,8 @@
 		<th style="text-align:center;", colspan=2, width="50%"><b>Coarse Perception:<br>Image Quality</b></th>
 	</tr>
 	<tr>
-		<td colspan=2><div style="text-align:center"><img src="MMBench/544.jpg" width="75%"></div></td>
-		<td colspan=2><div style="text-align:center"><img src="MMBench/768.jpg" width="75%"></div></td>
+		<td colspan=2><img src="MMBench/544.jpg" width="100%"></td>
+		<td colspan=2><img src="MMBench/768.jpg" width="100%"></td>
 	</tr>
 	<tr>
 		<td colspan=2><p>QUESTION. Identify the emotion expressed in this image.<br><br>Options:<br>A. happiness<br>B. sadness<br>C. anger<br>D. love<br><br>ANSWER. A<br></p></td>
