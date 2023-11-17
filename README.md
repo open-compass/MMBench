@@ -210,7 +210,7 @@ If there are any questions with fewer than four options, simply leave those fiel
 
 ```bibtex
 @article{MMBench,
-    author  = {Yuan Liu, Haodong Duan, Yuanhan Zhang, Bo Li, Songyang Zhnag, Wangbo Zhao, Yike Yuan, Jiaqi Wang, Conghui He, Ziwei Liu, Kai Chen, Dahua Lin},
+    author  = {Yuan Liu, Haodong Duan, Yuanhan Zhang, Bo Li, Songyang Zhang, Wangbo Zhao, Yike Yuan, Jiaqi Wang, Conghui He, Ziwei Liu, Kai Chen, Dahua Lin},
     journal = {arXiv:2307.06281},
     title   = {MMBench: Is Your Multi-modal Model an All-around Player?},
     year    = {2023},
