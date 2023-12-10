@@ -19,13 +19,13 @@ Official repository of ["**MMBench: Is Your Multi-modal Model an All-around Play
 
 **Visualization**: You can visualize data samples of benchmarks in MMBench in [Visualization](/samples/README.md). 
 
-**Code**: You can refer to the [example code](https://github.com/open-compass/opencompass/blob/main/configs/multimodal/minigpt_4/README.md) to evaluate your model on MMBench.
+**Evaluation**: You can use [**VLMEvalKit**](https://github.com/open-compass/VLMEvalKit) (the official code we used for the MMBench leaderboard) to evaluate your VLM on MMBench benchmarks. To submit your prediction on the test splits of MMBench, you can visit [MMBench Submission](https://mmbench.opencompass.org.cn/mmbench-submission). 
 
 ## **News**
 
-1. [2023/10/23] We provide a new benchmark named **CCBench**, which is a multi-modal benchmark in the domain of Chinese Culture.
-
-2. [2023/10/03] We provide a verified **Chinese**-translated version of MMBench. Users can utilize it to verify the Chinese capability of their VLMs. We provide an illustration in the figure below. 
+1. [2023/12/10] We provide a multi-modal evaluation toolkit [VLMEvalKit](https://github.com/open-compass/VLMEvalKit), which supports evaluating VLMs on MMBench and many other multi-modal benchmarks. 
+2. [2023/10/23] We provide a new benchmark named **CCBench**, which is a multi-modal benchmark in the domain of Chinese Culture.
+3. [2023/10/03] We provide a verified **Chinese**-translated version of MMBench. Users can utilize it to verify the Chinese capability of their VLMs. We provide an illustration in the figure below. 
 
 <div align="center">
 <img src="https://opencompass.oss-cn-shanghai.aliyuncs.com/omnimmbench/img/multi_lingual.png" width="60%">
