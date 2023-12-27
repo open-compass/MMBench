@@ -5,27 +5,29 @@
 Official repository of ["**MMBench: Is Your Multi-modal Model an All-around Player?**"](https://arxiv.org/abs/2307.06281)
 
 > **🔥 Attention**<br>
-> MMBench is developed by the [OpenCompass Community](https://github.com/open-compass/opencompass), welcome to follow the OpenCompass for more latest evaluation techniques of large model. 
+> MMBench is developed by the [**OpenCompass Community**](https://github.com/open-compass/opencompass), welcome to follow the OpenCompass for more latest evaluation techniques of large model. 
 
 **Download**:  MMBench is a collection of benchmarks to evaluate the multi-modal understanding capability of large vision language models (LVLMs). The table below list the information of all benchmarks included in MMBench as well as their download links. 
 
 | Name              | Split | Language | # Questions | Comment                                      | Download Link                                                |
 | ----------------- | ----- | -------- | ----------- | -------------------------------------------- | ------------------------------------------------------------ |
-| MMBench-Dev       | Dev   | EN       | 1164        | The Dev Split of MMBench                     | **[Download](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_en_20231003.tsv)** |
-| MMBench-Test      | Test  | EN       | 1784        | The Test Split of MMBench                    | **[Download](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_test_en_20231003.tsv)** |
-| MMBench-Dev (cn)  | Dev   | CN       | 1164        | Chinese Version of MMBench-Dev               | **[Download](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_cn_20231003.tsv)** |
-| MMBench-Test (cn) | Test  | CN       | 1784        | Chinese Version of MMBench-Test              | **[Download](https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_test_cn_20231003.tsv)** |
-| CCBench           | Dev   | CN       | 544         | A Benchmark on Chinese Culture Related Stuff | **[Download](https://download.openmmlab.com/mmclassification/datasets/mmbench/ccbench_20231003.tsv)**                                                     |
+| MMBench-Dev       | Dev   | EN       | 1164        | The Dev Split of MMBench                     | **[Download](http://opencompass.openxlab.space/utils/VLMEval/MMBench_DEV_EN.tsv)** |
+| MMBench-Test      | Test  | EN       | 1784        | The Test Split of MMBench                    | **[Download](http://opencompass.openxlab.space/utils/VLMEval/MMBench_TEST_EN.tsv)** |
+| MMBench-Dev (cn)  | Dev   | CN       | 1164        | Chinese Version of MMBench-Dev               | **[Download](http://opencompass.openxlab.space/utils/VLMEval/MMBench_DEV_CN.tsv)** |
+| MMBench-Test (cn) | Test  | CN       | 1784        | Chinese Version of MMBench-Test              | **[Download](http://opencompass.openxlab.space/utils/VLMEval/MMBench_TEST_CN.tsv)** |
+| CCBench           | Dev   | CN       | 510         | A Benchmark on Chinese Culture Related Stuff | **[Download](http://opencompass.openxlab.space/utils/VLMEval/CCBench.tsv)** |
 
-**Visualization**: You can visualize data samples of benchmarks in MMBench in [Visualization](/samples/README.md). 
+**Visualization**: You can visualize data samples of benchmarks in MMBench in [**Visualization**](/samples/README.md). 
 
-**Code**: You can refer to the [example code](https://github.com/open-compass/opencompass/blob/main/configs/multimodal/minigpt_4/README.md) to evaluate your model on MMBench.
+**Evaluation**: Please use our official evaluation toolkit [**VLMEvalKit**](https://github.com/open-compass/VLMEvalKit) for MMBench evaluation. 
 
 ## **News**
 
-1. [2023/10/23] We provide a new benchmark named **CCBench**, which is a multi-modal benchmark in the domain of Chinese Culture.
+1. [2023/12/26] We have updated **CCBench** and removed noisy testing samples, the new version can be downloaded here [**Download**](http://opencompass.openxlab.space/utils/VLMEval/CCBench.tsv). The leaderboard is updated accordingly. 
 
-2. [2023/10/03] We provide a verified **Chinese**-translated version of MMBench. Users can utilize it to verify the Chinese capability of their VLMs. We provide an illustration in the figure below. 
+2. [2023/10/23] We provide a new benchmark named **CCBench**, which is a multi-modal benchmark in the domain of Chinese Culture.
+
+3. [2023/10/03] We provide a verified **Chinese**-translated version of MMBench. Users can utilize it to verify the Chinese capability of their VLMs. We provide an illustration in the figure below. 
 
 <div align="center">
 <img src="https://opencompass.oss-cn-shanghai.aliyuncs.com/omnimmbench/img/multi_lingual.png" width="60%">
@@ -78,133 +80,41 @@ In MMBench, we present a new evaluation protocol to yield robust evaluation resu
 
 ## How To Use?
 
-### Intro to each data sample in MMBench
-
-MMBecnh is split into **dev** and **test** split, and each data sample in each split contains the following field:
-
-```
-img: the raw data of an image
-question: the question
-options: the concated options
-category: the leaf category
-l2-category: the l2-level category
-options_dict: the dict contains all options
-index: the unique identifier of current question
-context (optional): the context to a question, which is optional.
-answer: the target answer to current question. (only exists in the dev split, and is keep confidential for the test split on our evaluation server)
-```
-
-### Load MMBench
-
-We provide a code snippet as an example of loading MMBench
+Please use our official evaluation toolkit [**VLMEvalKit**](https://github.com/open-compass/VLMEvalKit) for MMBench evaluation. Here we present some scripts for loading and browsing MMBench (you need to install VLMEvalKit first).
 
 ```python
-import base64
-import io
-import random
+from vlmeval.utils import TSVDataset
+from vlmeval.smp import mmqa_display
+# Load MMBench-DEV-EN
+dataset = TSVDataset('MMBench-DEV-EN')
+# Display Samples
+dataset.display(0)
+""" 
+Output: <image>
+QUESTION. Identify the question that Madelyn and Tucker's experiment can best answer.
+HINT. The passage below describes an experiment. Read the passage and then follow the instructions below.
 
-import pandas as pd
-from PIL import Image
-from torch.utils.data import Dataset
-
-def decode_base64_to_image(base64_string):
-    image_data = base64.b64decode(base64_string)
-    image = Image.open(io.BytesIO(image_data))
-    return image
-
-class MMBenchDataset(Dataset):
-    def __init__(self,
-                 data_file,
-                 sys_prompt='There are several options:'):
-        self.df = pd.read_csv(data_file, sep='\t')
-        self.sys_prompt = sys_prompt
-
-    def __len__(self):
-        return len(self.df)
-
-    def __getitem__(self, idx):
-        index = self.df.iloc[idx]['index']
-        image = self.df.iloc[idx]['image']
-        image = decode_base64_to_image(image)
-        question = self.df.iloc[idx]['question']
-        answer = self.df.iloc[idx]['answer'] if 'answer' in self.df.iloc[0].keys() else None
-        catetory = self.df.iloc[idx]['category']
-        l2_catetory = self.df.iloc[idx]['l2-category']
-
-        option_candidate = ['A', 'B', 'C', 'D', 'E']
-        options = {
-            cand: self.load_from_df(idx, cand)
-            for cand in option_candidate
-            if self.load_from_df(idx, cand) is not None
-        }
-        options_prompt = f'{self.sys_prompt}\n'
-        for key, item in options.items():
-            options_prompt += f'{key}. {item}\n'
-
-        hint = self.load_from_df(idx, 'hint')
-        data = {
-            'img': image,
-            'question': question,
-            'answer': answer,
-            'options': options_prompt,
-            'category': catetory,
-            'l2-category': l2_catetory,
-            'options_dict': options,
-            'index': index,
-            'context': hint,
-        }
-        return data
-    
-    def load_from_df(self, idx, key):
-        if key in self.df.iloc[idx] and not pd.isna(self.df.iloc[idx][key]):
-            return self.df.iloc[idx][key]
-        else:
-            return None
-```
-
-### How to construct the inference prompt
-
-```python
-if data_sample['context'] is not None:
-    prompt = data_sample['context'] + ' ' + data_sample['question'] + ' ' + data_sample['options']
-else:
-    prompt = data_sample['question'] + ' ' + data_sample['options']
-```
-
-For example:
-
-| Question                                  | Options                                                      | Image                                                        |
-| ----------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Which category does this image belong to? | A. Oil Painting<br/>B. Sketch<br/>C. Digital art<br/>D. Photo | <div align="center"><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/34324155/255581681-1364ef43-bd27-4eb5-b9e5-241327b1f920.png" width="30%"></div> |
-
-
-```python
-prompt = """
-###Human: Question: Which category does this image belong to?
-There are several options: A. Oil Painting, B. Sketch, C. Digital art, D. Photo
-###Assistant:
+Madelyn applied a thin layer of wax to the underside of her snowboard and rode the board straight down a hill. Then, she removed the wax and rode the snowboard straight down the hill again. She repeated the rides four more times, alternating whether she rode with a thin layer of wax on the board or not. Her friend Tucker timed each ride. Madelyn and Tucker calculated the average time it took to slide straight down the hill on the snowboard with wax compared to the average time on the snowboard without wax.
+Figure: snowboarding down a hill.
+A. Does Madelyn's snowboard slide down a hill in less time when it has a thin layer of wax or a thick layer of wax?
+B. Does Madelyn's snowboard slide down a hill in less time when it has a layer of wax or when it does not have a layer of wax?
+ANSWER. B
+CATEGORY. identity_reasoning
+SOURCE. scienceqa
+L2-CATEGORY. attribute_reasoning
+SPLIT. dev
 """
 ```
 
-You can make custom modifications to the prompt
+**To infer the results:**
 
-### How to save results:
-
-You should dump your model's predictions into an excel(.xlsx) file, and this file should contain the following fields:
-
-```
-question: the question
-A: The first choice
-B: The second choice
-C: The third choice
-D: The fourth choice
-prediction: The prediction of your model to current question
-category: the leaf category
-l2_category: the l2-level category
-index: the question index
+```bash
+# Take llava_v1.5_7b as an example
+# To evaluate your own model, replace `llava_v1.5_7b` with the name of your implemented model
+python run.py --model llava_v1.5_7b --data MMBench_TEST_EN --mode infer
 ```
 
-If there are any questions with fewer than four options, simply leave those fields blank.
+The command will output an excel file: `{model_name}/{model_name}_{dataset_name}.xlsx`. For **MMBench-TEST-CN/EN**, you can submit the file to https://mmbench.opencompass.org.cn/mmbench-submission to obtain the evaluation accuracies. 
 
 ## Citation
 
