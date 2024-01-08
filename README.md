@@ -9,13 +9,17 @@ Official repository of ["**MMBench: Is Your Multi-modal Model an All-around Play
 
 **Download**:  MMBench is a collection of benchmarks to evaluate the multi-modal understanding capability of large vision language models (LVLMs). The table below list the information of all benchmarks included in MMBench as well as their download links. 
 
-| Name              | Split | Language | # Questions | Comment                                      | Download Link                                                |
-| ----------------- | ----- | -------- | ----------- | -------------------------------------------- | ------------------------------------------------------------ |
-| MMBench-Dev       | Dev   | EN       | 1164        | The Dev Split of MMBench                     | **[Download](http://opencompass.openxlab.space/utils/VLMEval/MMBench_DEV_EN.tsv)** |
-| MMBench-Test      | Test  | EN       | 1784        | The Test Split of MMBench                    | **[Download](http://opencompass.openxlab.space/utils/VLMEval/MMBench_TEST_EN.tsv)** |
-| MMBench-Dev (cn)  | Dev   | CN       | 1164        | Chinese Version of MMBench-Dev               | **[Download](http://opencompass.openxlab.space/utils/VLMEval/MMBench_DEV_CN.tsv)** |
-| MMBench-Test (cn) | Test  | CN       | 1784        | Chinese Version of MMBench-Test              | **[Download](http://opencompass.openxlab.space/utils/VLMEval/MMBench_TEST_CN.tsv)** |
-| CCBench           | Dev   | CN       | 510         | A Benchmark on Chinese Culture Related Stuff | **[Download](http://opencompass.openxlab.space/utils/VLMEval/CCBench.tsv)** |
+**Difference between *Download Link (VLMEvalKit)* and *Download Link (Legacy)*** : **Download Link (VLMEvalKit)** is the data format used by our official evaluation framework [**VLMEvalKit**](https://github.com/open-compass/VLMEvalKit), which reduces the file size by keeping only one replica for images in different passes of CircularEval. Meanwhile, **Download Link (Legacy)** keeps $N$ image replicas for an $N$-option CircularEval. **Other contents in these two versions are exactly the same.**
+
+**For previous users that do not use VLMEvalKit for evaluation, please download from *Download Link (Legacy)* !!! ** 
+
+| Name              | Split | Language | # Questions | Comment                                      | Download Link (VLMEvalKit)                                   | Download Link (Legacy)                                       |
+| ----------------- | ----- | -------- | ----------- | -------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| MMBench-Dev       | Dev   | EN       | 1164        | The Dev Split of MMBench                     | **[Download](http://opencompass.openxlab.space/utils/VLMEval/MMBench_DEV_EN.tsv)** | [Download](http://opencompass.openxlab.space/utils/MMBench/MMBench_DEV_EN_legacy.tsv) |
+| MMBench-Test      | Test  | EN       | 1784        | The Test Split of MMBench                    | **[Download](http://opencompass.openxlab.space/utils/VLMEval/MMBench_TEST_EN.tsv)** | [Download](http://opencompass.openxlab.space/utils/MMBench/MMBench_TEST_EN_legacy.tsv) |
+| MMBench-Dev (cn)  | Dev   | CN       | 1164        | Chinese Version of MMBench-Dev               | **[Download](http://opencompass.openxlab.space/utils/VLMEval/MMBench_DEV_CN.tsv)** | [Download](http://opencompass.openxlab.space/utils/MMBench/MMBench_DEV_CN_legacy.tsv) |
+| MMBench-Test (cn) | Test  | CN       | 1784        | Chinese Version of MMBench-Test              | **[Download](http://opencompass.openxlab.space/utils/VLMEval/MMBench_TEST_CN.tsv)** | [Download](http://opencompass.openxlab.space/utils/MMBench/MMBench_TEST_CN_legacy.tsv) |
+| CCBench           | Dev   | CN       | 510         | A Benchmark on Chinese Culture Related Stuff | **[Download](http://opencompass.openxlab.space/utils/VLMEval/CCBench.tsv)** | [Download](http://opencompass.openxlab.space/utils/MMBench/CCBench_legacy.tsv) |
 
 **Visualization**: You can visualize data samples of benchmarks in MMBench in [**Visualization**](/samples/README.md). 
 
