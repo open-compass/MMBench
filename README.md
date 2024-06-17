@@ -88,12 +88,13 @@ Please use our official evaluation toolkit [**VLMEvalKit**](https://github.com/o
 ```python
 from vlmeval.utils import TSVDataset
 from vlmeval.smp import mmqa_display
-# Load MMBench-DEV-EN
-dataset = TSVDataset('MMBench-DEV-EN')
-# Display Samples
+# Load MMBench_DEV_EN
+dataset = TSVDataset('MMBench_DEV_EN')
+# To visualize samples in dataset (by index)
 dataset.display(0)
 """ 
-Output: <image>
+The output will be:
+<image>
 QUESTION. Identify the question that Madelyn and Tucker's experiment can best answer.
 HINT. The passage below describes an experiment. Read the passage and then follow the instructions below.
 
@@ -106,6 +107,16 @@ CATEGORY. identity_reasoning
 SOURCE. scienceqa
 L2-CATEGORY. attribute_reasoning
 SPLIT. dev
+"""
+# To build multi-modal prompt for samples in dataset (by index)
+item = dataset.build_prompt(0)
+print(item)
+""" 
+The output will be:
+[
+    {'type': 'image', 'value': '/root/LMUData/images/MMBench/241.jpg'},  # The image will be automatically saved under ~/LMUData/
+    {'type': 'text', 'value': "Hint: The passage below describes an experiment. Read the passage and then follow the instructions below.\n\nMadelyn applied a thin layer of wax to the underside of her snowboard and rode the board straight down a hill. Then, she removed the wax and rode the snowboard straight down the hill again. She repeated the rides four more times, alternating whether she rode with a thin layer of wax on the board or not. Her friend Tucker timed each ride. Madelyn and Tucker calculated the average time it took to slide straight down the hill on the snowboard with wax compared to the average time on the snowboard without wax.\nFigure: snowboarding down a hill.\nQuestion: Identify the question that Madelyn and Tucker's experiment can best answer.\nOptions:\nA. Does Madelyn's snowboard slide down a hill in less time when it has a thin layer of wax or a thick layer of wax?\nB. Does Madelyn's snowboard slide down a hill in less time when it has a layer of wax or when it does not have a layer of wax?\nPlease select the correct answer from the options above. \n"}
+]
 """
 ```
 
