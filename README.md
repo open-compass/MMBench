@@ -86,10 +86,10 @@ In MMBench, we present a new evaluation protocol to yield robust evaluation resu
 Please use our official evaluation toolkit [**VLMEvalKit**](https://github.com/open-compass/VLMEvalKit) for MMBench evaluation. Here we present some scripts for loading and browsing MMBench (you need to install VLMEvalKit first).
 
 ```python
-from vlmeval.utils import TSVDataset
+from vlmeval.dataset import ImageMCQDataset
 from vlmeval.smp import mmqa_display
 # Load MMBench_DEV_EN
-dataset = TSVDataset('MMBench_DEV_EN')
+dataset = ImageMCQDataset('MMBench_DEV_EN')
 # To visualize samples in dataset (by index)
 dataset.display(0)
 """ 
